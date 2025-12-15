@@ -84,11 +84,11 @@ if os.environ.get('RENDER'):
         "PASSWORD": os.environ.get("MYSQLPASSWORD"),
         "HOST": os.environ.get("MYSQLHOST"),
         "PORT": os.environ.get("MYSQLPORT"),
-        "OPTIONS":{
-            'ssl':{
-                'ca':str(BASE_DIR/'VoterCard'/'certs'/'ca.pem')
-            }
-        }
+        # "OPTIONS":{
+        #     'ssl':{
+        #         'ca':str(BASE_DIR/'VoterCard'/'certs'/'ca.pem')
+        #     }
+        # }
     }
 }
 
