@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter ID Card</title>
+    <link rel="stylesheet" href="{% static 'voter_card.css' %}">
+</head>
+<body>
+
+<div class="epic-wrapper">
+    <div class="epic-header">
+        <div class="logo-left">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Emblem_of_India_with_transparent_background.png" alt="India Emblem">
+        </div>
+
+        <div class="header-title">
+            <h2>Election Commission of India</h2>
+            <p>Elector Photo Identity Card</p>
+        </div>
+
+        <div class="logo-right">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSej4fyN97OIQFe5S-exVlehtT-AtnA1bR2bg&s" alt="ECI Logo">
+        </div>
+    </div>
+
+    <div class="epic-body">
+        <div class="photo">
+            <img src="{{ data.photo.url }}" alt="Voter Photo">
+        </div>
+        <div class="details-box">
+            <p><strong>Name:</strong> {{ data.name }}</p>
+            <p><strong>Father Name:</strong> {{ data.father_name }}</p>
+            <p><strong>DOB:</strong> {{ data.dob }}</p>
+            <p><strong>Gender:</strong> {{ data.gender }}</p>
+            <p><strong>Address:</strong> {{ data.address }}</p>
+            <p><strong>Voter ID:</strong> {{ data.voter_id }}</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

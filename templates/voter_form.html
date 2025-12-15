@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Voter Card</title>
+    <link rel="stylesheet" href="{% static 'voter_form.css' %}">
+</head>
+<body>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <p>
+            {{ field.label_tag }}
+            {{ field }}
+
+            {# ✅ ERROR ONLY FOR DOB FIELD #}
+            {% if field.name == "dob" and field.errors %}
+                <span class="field-error">
+                    {{ field.errors|striptags }}
+                </span>
+            {% endif %}
+        </p>
+    {% endfor %}
+
+    <button type="submit">Generate Voter ID</button>
+</form>
+
+</body>
+</html>
