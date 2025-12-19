@@ -14,6 +14,5 @@ class Voter(models.Model):
     address=models.TextField()
     photo=models.ImageField(upload_to='photo')
     voter_id=models.CharField(max_length=10,unique=True)
-    temp_fix=models.BooleanField(default=False)
     def __str__(self):
         return self.name
