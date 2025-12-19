@@ -26,7 +26,11 @@
             <td>{{x.dob}}</td>
             <td>{{x.gender}}</td>
             <td>{{x.address}}</td>
+            {% if x.photo %}
             <td><img src="{{x.photo.url}}" alt="" width="200px"></td>
+            {% else %}
+            <td>No Photo</td>
+            {% endif %}
             <td>{{x.voter_id}}</td>
             <td><a href="{% url 'get_voter' x.id %}">View</a></td>
         </tr>

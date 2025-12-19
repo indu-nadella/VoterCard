@@ -27,7 +27,11 @@
 
     <div class="epic-body">
         <div class="photo">
+            {% if data.photo %}
             <img src="{{ data.photo.url }}" alt="Voter Photo">
+            {% else %}
+            <p>No Photo</p>
+            {% endif %}
         </div>
         <div class="details-box">
             <p><strong>Name:</strong> {{ data.name }}</p>
