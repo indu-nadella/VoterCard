@@ -30,3 +30,4 @@ urlpatterns = [
     path('get_table/',get_table,name='get_table'),
 
 ]
++static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

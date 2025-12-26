@@ -25,7 +25,7 @@ TEMPLATES_DIR=BASE_DIR/'templates'
 SECRET_KEY = 'django-insecure-f2kph$d#bjkz_!-i76=!*wh#-)$5igt(7@m(it#$=i^f%97(n&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG")=='True'
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -80,28 +80,28 @@ WSGI_APPLICATION = 'VoterCard.wsgi.application'
 
 if os.environ.get('RENDER'):
     DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": os.environ.get("MYSQLDATABASE"),
-        "USER": os.environ.get("MYSQLUSER"),
-        "PASSWORD": os.environ.get("MYSQLPASSWORD"),
-        "HOST": os.environ.get("MYSQLHOST"),
-        "PORT": os.environ.get("MYSQLPORT"),
-        # "OPTIONS":{
-        #     'ssl':{
-        #         'ca':str(BASE_DIR/'VoterCard'/'certs'/'ca.pem')
-        #     }
-        # }
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": os.environ.get("MYSQLDATABASE"),
+            "USER": os.environ.get("MYSQLUSER"),
+            "PASSWORD": os.environ.get("MYSQLPASSWORD"),
+            "HOST": os.environ.get("MYSQLHOST"),
+            "PORT": os.environ.get("MYSQLPORT","3306"),
+            # "OPTIONS":{
+            #     'ssl':{
+            #         'ca':str(BASE_DIR/'VoterCard'/'certs'/'ca.pem')
+            #     }
+            # }
+        }
     }
-}
 
 else:
     DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 
 
 # Password validation
@@ -151,9 +151,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # MEDIA_URL='/media/'
 # MEDIA_ROOT=BASE_DIR/'media'
 
-CLOUDINARY_STORAGE={
-    'CLOUD_NAME':os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY':os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET':os.environ.get('CLOUDINARY_API_SECRET'),
-}
+import cloudinary
+CLOUDINARY.config(
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
+)
 DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'
